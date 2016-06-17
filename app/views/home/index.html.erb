@@ -1,0 +1,26 @@
+<h1>HOME page</h1>
+
+<% if @posts.length !=0 %>
+<% @posts.each do |post| %>
+  <%= link_to post.title, post_path(post) %><br>
+  <%= post.body %>
+  <hr>
+<% end %>
+
+<nav>
+  <% if session[:pgnum].to_i <= 0%>
+  <%= "<" %>
+  <% else %>
+  <%= link_to '<', home_path(pgnum: session[:pgnum].to_i-1, word: session[:word])%>
+  <% end %>
+  <% for i in 0...@numofpg %>
+  <%= link_to " #{i+1} ", home_path(pgnum: i, word: session[:word]) %>
+  <% end %>
+  <% if session[:pgnum].to_i > @numofpg-2 %>
+  <%= ">" %>
+  <% else %>
+  <%= link_to '>', home_path(pgnum: session[:pgnum].to_i+1, word: session[:word])%>
+  <% end %>
+</nav>
+<br>
+<% end %>

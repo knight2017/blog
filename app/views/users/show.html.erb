@@ -1,0 +1,25 @@
+<h1>Hello <%= "#{@user.full_name}" %></h1>
+<%#= @user.first_name %>
+<%#= @user.last_name %>
+<%#= @user.email %>
+<%= @user.errors.full_messages.join(", ") %>
+<br>
+<br>
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label :first_name %> <br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :last_name %> <br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :email %> <br>
+    <%= f.email_field :email %>
+  </div>
+
+<%= f.submit "Save Change" %>
+<% end %>
+<br>
+<%= link_to "Change Password", edit_user_path(@user) %>

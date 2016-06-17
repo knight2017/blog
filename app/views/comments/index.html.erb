@@ -1,0 +1,12 @@
+<h1>your comments</h1>
+<br>
+<h2><%= link_to "Add Comment", new_comment_path %></h2>
+<br>
+
+
+<% @comments.each do |comment| %>
+
+<%=link_to "#{comment.body}", comment_path(comment) %>
+<hr>
+
+<% end %>

@@ -1,0 +1,32 @@
+<h2>Selected Blog</h2>
+<h1><%= @blog.title %></h1>
+<h2><%= @blog.body %></h2>
+<p>Created By: <%= @blog.user.full_name if @blog.user %></p>
+<%= link_to "Edit", edit_post_path( @blog) %>
+<%= link_to "Delete", post_path(@blog),
+                        method: :delete,
+                        data: {confirm: "Are you sure?"} %><br>
+
+<%= @comment.errors.full_messages.join(", ") %> <br>
+
+<%= form_for [@blog, @comment] do |f| %>
+   <h3>commnets</h3>
+   <%= f.text_area :body %>
+   <br>
+   <%= f.submit %>
+<% end %>
+
+
+<h2>Comments</h2>
+<div>
+
+<% @blog.new_first_comment.each do |comment| %>
+  <%= comment.body %>
+  <p>By: <%= comment.user.full_name if comment.user %></p>
+  <%= link_to "Delete", post_comment_path(@blog, comment),
+                        method: :delete,
+                        data: {confirm: "Are you sure?"} %>
+  <hr>
+<% end %>
+
+</div>

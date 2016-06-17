@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+   <nav>
+     <a href="/">HOME</a> |
+     <a href="/about">About</a> |
+     <a href="/posts">Blogs</a> |
+     <% if session[:user_id] %>
+      Hello <%= link_to "#{current_user.first_name}", user_path(current_user) %>
+     <%= link_to "sign out", sessions_path, method: :delete %>
+     <% else %>
+      <a href="/users/new"> Sign Up</a>
+     <%= link_to "Sign In", new_session_path %>
+     <% end %>
+    <hr>
+
+    <% if flash[:notice] %>
+    <div class="flash-notice"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+    <div class="flash-alert"><%= flash[:alert] %></div>
+    <% end %>
+
+
+
+
+   </nav>
+
+   <%= form_tag home_path do  %>
+   <%= text_field_tag :word, params[:word] %>
+   <%= submit_tag "Search" %>
+   <% end %>
+
+
+<%= yield %>
+
+</body>
+</html>
