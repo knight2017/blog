@@ -2,8 +2,9 @@
 <h2>Comment Selected</h2>
 
 <%= @comment.body %>
-
+<% if can? :manage, @question %>
  <%=link_to "edit", edit_comment_path(@comment)  %>
  <%= link_to "delete", comment_path(@comment),
                        method: :delete,
                        data:   {confirm: "Are you sure?"} %>
+<% end %>

@@ -7,10 +7,12 @@
 <% @blogs.each do |blog| %>
   <%= link_to blog.title, post_path(blog) %>|
   <%= blog&.user.first_name %>|
+  <% if can? :manage, blog%>
   <%= link_to "Edit", edit_post_path( blog) %>
   <%= link_to "Delete", post_path(blog),
                           method: :delete,
                           data: {confirm: "Are you sure?"} %> <br>
+  <% end %>                      
   <%= blog.body %>
   <hr>
 <% end %>

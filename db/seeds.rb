@@ -12,9 +12,13 @@
   # Category.create title: cat
   # end
 
-   100.times do
-    q = Post.first
-    q.destroy
-   end
+  #  100.times do
+  #   q = Post.first
+  #   q.destroy
+  #  end
 
-  puts Cowsay.say "500 inputs done!!"
+
+
+  30.times { Tag.create(title: Faker::Hacker.adjective) }
+
+  puts Cowsay.say "30 inputs done!!"

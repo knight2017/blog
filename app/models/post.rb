@@ -2,6 +2,13 @@ class Post < ActiveRecord::Base
 belongs_to :user
 belongs_to :category
 has_many :comments, dependent: :destroy
+has_many :favourites, dependent: :destroy
+has_many :users, through: :favourites
+has_many :stars, dependent: :destroy
+has_many :staring_users, through: :stars, source: :user
+has_many :taggings, dependent: :destroy
+has_many :tags, through: :taggings
+
 validates(:title, presence: true, uniqueness: true, length: {minimum: 2})
 validates :body, presence: true, length: {minimum: 2}
 
@@ -17,8 +24,17 @@ end
  comments.order(id: :desc)
  end
 
-
-
-
+def faved_by(user)
+  favourites.exists?(user:user)
+end
+def fave_for(user)
+ favourites.find_by_user_id user
+end
+def stared_by?(user)
+  stars.exists?(user:user)
+end
+def star_for(user)
+ stars.find_by_user_id user
+end
 
 end

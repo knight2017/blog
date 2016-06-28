@@ -1,0 +1,10 @@
+Hello <%= @blog.user.full_name %>,
+
+<%= @user.full_name.capitalize %> has just commented your post titled: <%= @blog.title %>.
+comment: <%= @comment.body %>
+
+Click <%= link_to "here", post_url(@blog) %> to view your post.
+
+Regards,
+
+Awesome Posts Team

@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     @comment = @blog.comments.new comment_params
     @comment.user = current_user
     if @comment.save
+      CommentsMailer.notify_post_owner(@comment).deliver_now
       redirect_to post_path(@blog), notice: "comment Created"
     else
       render "/posts/show"
@@ -30,9 +31,9 @@ class CommentsController < ApplicationController
      end
 
      def productowner
-       a = Comment.find params[:id]
-       redirect_to "./public/422.html" unless session[:user_id] == a.user.try(:id)
-     end
+       @comment  = Comment.find params[:id]
+       redirect_to post_path(id: @comment.post_id), alert: "access denied" unless can? :manage, @comment
+    end
 
 
 

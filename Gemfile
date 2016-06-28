@@ -1,4 +1,11 @@
 source 'https://rubygems.org'
+gem "font-awesome-rails"
+gem 'bootstrap-sass'
+gem "bootstrap-glyphicons"
+gem "jquery-rails"
+gem "delayed_job_web"
+gem 'delayed_job_active_record'
+gem "letter_opener", :group => :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails-erd'
 gem 'interactive_editor'
@@ -16,9 +23,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
+gem 'cancancan', '~> 1.10'
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 group :development, :test do
+  gem 'pry'
+  gem 'pry-rails'
   gem 'byebug'
   gem 'rspec-rails'
 end

@@ -1,0 +1,12 @@
+<p>Hello <%= @blog.user.full_name %>,</p>
+
+<p><%= @user.full_name.capitalize %> has just commneted your post titled: <%= @blog.title %>.</p>
+<br>
+comment: <%= @comment.body %>
+<br>
+
+<p>Click <%= link_to "here", post_url(@blog) %> to view your post.</p>
+
+<p>Regards,</p>
+
+<p>Awesome Posts Team</p>

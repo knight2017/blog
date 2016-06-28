@@ -1,16 +1,24 @@
 Rails.application.routes.draw do
+resources :stars
 root "home#index"
 resources :users
 resources :sessions, only: [:new, :create] do
    delete :destroy, on: :collection
 end
+resources :favourites, only: [:index]
 resources :posts do
+resources :stars, only: [:create, :update, :destroy]
 resources :comments, only: [:create, :destroy]
+resources :favourites, only: [:create, :destroy]
 end
 #
-get '/'           => 'home#index', as: :home
-get '/about'      => 'home#about'
-post '/'          => 'home#index'
+get    '/'                => 'home#index', as: :home
+get    '/about'           => 'home#about'
+post   '/'                => 'home#index'
+get    '/passwordrequest' => 'home#password', as: :password
+post   '/passwordrequest' => 'home#token'
+get    '/passwordreset'   => 'home#passwordreset', as: :passwordreset
+patch  '/passwordreset'   => 'users#resetpassword'
 
 
 # get '/posts'      => 'posts#index'
