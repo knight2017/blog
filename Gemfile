@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem "font-awesome-rails"
 gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem "bootstrap-glyphicons"
 gem "jquery-rails"
 gem "delayed_job_web"
@@ -18,7 +19,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'cowsay'
 gem 'faker', github:'stympy/faker'
-gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc

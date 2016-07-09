@@ -9,12 +9,17 @@ class CommentsController < ApplicationController
     @blog = Post.find params[:post_id]
     @comment = @blog.comments.new comment_params
     @comment.user = current_user
-    if @comment.save
-      CommentsMailer.notify_post_owner(@comment).deliver_now
-      redirect_to post_path(@blog), notice: "comment Created"
-    else
-      render "/posts/show"
-    end
+    respond_to do |format|
+
+        if @comment.save
+          # CommentsMailer.notify_post_owner(@comment).deliver_now
+          format.html {redirect_to post_path(@blog), notice: "comment Created"}
+           format.js { render :create_success }
+        else
+          format.html {render "/posts/show"}
+          format.js { render :create_failure }
+        end
+     end
   end
 
 

@@ -15,21 +15,29 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
-   <nav class="container">
-     <a class="item" href="/">HOME</a>
-     <a class="item" href="/about">About</a>
-     <a class="item" href="/posts">Blogs</a> 
-     <div class="item">
+   <nav class="navbar navbar-light bg-orange navbar-fixed-top">
+    <ul class="nav navbar-nav">
+     <li><a class="item" href="/">HOME</a>      </li>
+     <li><a class="item" href="/about">About</a></li>
+     <li><a class="item" href="/posts">Blogs</a></li>
+     <li>
+     <%= form_tag home_path do  %>
+     <%= text_field_tag :word, params[:word] %>
+     <%= submit_tag "Search" %>
+     <% end %>
+     </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+
        <% if session[:user_id] %>
-       <%= link_to "Fave Posts", favourites_path %>
-        Hello <%= link_to "#{current_user.first_name}", user_path(current_user) %>
-       <%= link_to "sign out", sessions_path, method: :delete %>
+       <li><%= link_to "Fave Posts", favourites_path %></li>
+        <li><%= link_to "#{current_user.first_name}", user_path(current_user) %> </li>
+       <li><%= link_to "sign out", sessions_path, method: :delete %></li>
        <% else %>
-        <a href="/users/new"> Sign Up</a>
-       <%= link_to "Sign In", new_session_path %>
+        <li><a href="/users/new"> Sign Up</a></li>
+       <li><%= link_to "Sign In", new_session_path %></li>
        <% end %>
-     </div>
-    <hr>
+  </ul>
 
     <% if flash[:notice] %>
     <div class="flash-notice"><%= flash[:notice] %></div>
@@ -38,12 +46,9 @@
     <% end %>
    </nav>
 
-   <%= form_tag home_path do  %>
-   <%= text_field_tag :word, params[:word] %>
-   <%= submit_tag "Search" %>
-   <% end %>
-
-
+<br>
+<br>
+<br>
 <%= yield %>
 
 </body>

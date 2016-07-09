@@ -1,0 +1,9 @@
+<div id="<%= dom_id(comment)%>">
+<%= comment.body %>
+<p>By: <%= comment.user.full_name if comment.user %></p>
+<% if can? :manage, comment %>
+<%= link_to "Delete", post_comment_path(@blog, comment),
+                      method: :delete,
+                      data: {confirm: "Are you sure?"} %>
+<% end %>
+</div>

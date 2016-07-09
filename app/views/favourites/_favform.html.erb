@@ -1,0 +1,6 @@
+
+<% if @blog.faved_by(current_user) %>
+  <%= link_to "unfav  ", post_favourite_path(@blog, @blog.fave_for(current_user)), method: :delete, remote: true  %>
+<% else %>
+  <%= link_to "fav  ", post_favourites_path(@blog), method: :post, remote: true%>
+<% end %>

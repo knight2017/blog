@@ -5,6 +5,7 @@ resources :users
 resources :sessions, only: [:new, :create] do
    delete :destroy, on: :collection
 end
+resources :jshomes
 resources :favourites, only: [:index]
 resources :posts do
 resources :stars, only: [:create, :update, :destroy]
@@ -19,7 +20,8 @@ get    '/passwordrequest' => 'home#password', as: :password
 post   '/passwordrequest' => 'home#token'
 get    '/passwordreset'   => 'home#passwordreset', as: :passwordreset
 patch  '/passwordreset'   => 'users#resetpassword'
-
+get    '/list'            => 'jshomes#list'
+get    '/comment'         => 'jshomes#comment'
 
 # get '/posts'      => 'posts#index'
 # get '/posts/new'  => 'posts#new'

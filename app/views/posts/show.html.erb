@@ -3,15 +3,13 @@
 <h2><%= @blog.body %></h2>
 <p>Created By: <%= @blog.user.full_name if @blog.user %></p>
 <p>Tags: <%= @blog.tags.map {|t| t.title.capitalize }.join(", ") %></p>
- <% if user_signed_in? %>
-    <% if @blog.faved_by(current_user) %>
-      <%= link_to "unfav  ", post_favourite_path(@blog, @blog.fave_for(current_user)), method: :delete  %>
-    <% else %>
-      <%= link_to "fav  ", post_favourites_path(@blog), method: :post %>
-    <% end %>
+<% if user_signed_in? %>
+  <div class="fav-form">
+    <%= render 'favourites/favform'%>
+  </div>
+
      <br>
      <%= "your ratings #{current_user.stars.where(post_id: @blog).first.ratings}" if current_user.stars.where(post_id: @blog).first   %>
-
 
     <br>
     <% if @blog.stared_by?(current_user) %>
@@ -43,29 +41,22 @@
                               method: :delete,
                               data: {confirm: "Are you sure?"} %><br>
     <% end %>
-    <%= @comment.errors.full_messages.join(", ") %> <br>
 
-    <%= form_for [@blog, @comment] do |f| %>
-       <h3>commnets</h3>
-       <%= f.text_area :body %>
-       <br>
-       <%= f.submit %>
-    <% end %>
+    <div id="commnet-form">
+          <%= render "comments/comform" %>
+    </div>
+
 <% end %>
 
 <h2>Comments</h2>
 <div>
 
-<% @blog.new_first_comment.each do |comment| %>
-  <%= comment.body %>
-  <p>By: <%= comment.user.full_name if comment.user %></p>
-  <% if can? :manage, comment %>
-  <%= link_to "Delete", post_comment_path(@blog, comment),
-                        method: :delete,
-                        data: {confirm: "Are you sure?"} %>
-  <% end %>
-  <hr>
+  <div id="comments">
+    <% @blog.new_first_comment.each do |comment| %>
+    <%= render "/comments/comment", comment: comment %>
+    <% end %>
+  </div>
 
-<% end %>
+  <hr>
 
 </div>
