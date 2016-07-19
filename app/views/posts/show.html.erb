@@ -3,6 +3,7 @@
 <h2><%= @blog.body %></h2>
 <p>Created By: <%= @blog.user.full_name if @blog.user %></p>
 <p>Tags: <%= @blog.tags.map {|t| t.title.capitalize }.join(", ") %></p>
+<%= image_tag @blog.image.url(:medium) %>
 <% if user_signed_in? %>
   <div class="fav-form">
     <%= render 'favourites/favform'%>

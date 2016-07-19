@@ -6,18 +6,21 @@
     def index
      params[:pgnum] ||= 0
      session[:pgnum]= params[:pgnum]
+     @blogs2 = Post.all
      @blogs = Post.order(:id).offset(session[:pgnum].to_i*10).limit(10)
      a = Post.count
      a % 10 == 0 ? @numofpg = a/10 : @numofpg = a/10 + 1
+     respond_to do |format|
+       format.html { redner }
+       format.json { render json: @blogs }
+     end
     end
-
-
     def new
       @blog = Post.new
     end
 
     def create
-         blog_new = params.require(:post).permit(:title, :body, {tag_ids: []})
+         blog_new = params.require(:post).permit(:title, :image, :body, {tag_ids: []})
          @blog = Post.new blog_new
          @blog.user = current_user
          if @blog.save
@@ -28,7 +31,7 @@
     end
 
     def show
-      @blog = Post.find params[:id]
+      @blog = Post.friendly.find params[:id]
       @comment = Comment.new
     end
     def edit
@@ -36,13 +39,14 @@
     end
 
     def  update
-      blog_update = params.require(:post).permit(:title, :body, {tag_ids: []})
-       @blog = Post.find params[:id]
-       if @blog.update(blog_update)
+      blog_update = params.require(:post).permit(:title, :image, :body, {tag_ids: []})
+      @blog= Post.friendly.find params[:id]
+      @blog.slug = nil
+      if @blog.update(blog_update)
         redirect_to post_path(@blog)
-       else
+      else
         render :edit
-       end
+      end
     end
 
     def destroy

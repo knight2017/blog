@@ -1,21 +1,20 @@
 $(document).ready(function() {
 
-$.get("/jshomes", function(data){
+// $.get("/jshomes", function(data){
+//
+//     for( x in data) {
+//      $('#posts').prepend("<li data-id=" + data[x].id + ">"  + data[x].title + "</li><br>")
+//
+//     }
+// });
 
-    for( x in data) {
-     $('#posts').prepend("<li data-id=" + data[x].id + ">"  + data[x].title + "</li><br>")
-
-    }
-});
-
-$("#posts").on("click", "li", function(){
-     var clickedElement = $(this);
-    $.get("/jshomes/" + clickedElement.data("id"), function(data){
-      for( x in data) {
-       clickedElement.append("<br><i data-id=" + data[x].id + ">"  + data[x].body + "</i><br>")
-
-      }
-    })
+// $("#posts").on("click", "li", function(){
+//      var clickedElement = $(this);
+//     $.get("/jshomes/" + clickedElement.data("id"), function(data){
+//       for( x in data) {
+//        clickedElement.append("<br><i data-id=" + data[x].id + ">"  + data[x].body + "</i><br>")
+//       }
+//     })
     // window.location = "http://google.com";
     // $.ajax({
     //   method: "GET",
@@ -31,10 +30,3 @@ $("#posts").on("click", "li", function(){
     //   }.bind(this)
     // });
   });
-
-
-
-
-
-
-})

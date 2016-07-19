@@ -20,6 +20,7 @@
      <li><a class="item" href="/">HOME</a>      </li>
      <li><a class="item" href="/about">About</a></li>
      <li><a class="item" href="/posts">Blogs</a></li>
+     <li><%= link_to "Sign in with Twitter", sign_in_with_twitter_path %></li>
      <li>
      <%= form_tag home_path do  %>
      <%= text_field_tag :word, params[:word] %>

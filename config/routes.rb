@@ -22,6 +22,15 @@ get    '/passwordreset'   => 'home#passwordreset', as: :passwordreset
 patch  '/passwordreset'   => 'users#resetpassword'
 get    '/list'            => 'jshomes#list'
 get    '/comment'         => 'jshomes#comment'
+get "/auth/twitter", as: :sign_in_with_twitter
+get "/auth/twitter/callback" => "callbacks#twitter"
+namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :posts, only: [:index, :show] do
+        resources :comments, only: [:create]
+      end
+    end
+  end
 
 # get '/posts'      => 'posts#index'
 # get '/posts/new'  => 'posts#new'

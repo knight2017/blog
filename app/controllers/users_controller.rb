@@ -51,7 +51,8 @@ class UsersController < ApplicationController
   end
 
 def resetpassword
-   @user = User.where("reset_token ILIKE '%#{params[:token]}%'").first
+   @user = User.where("reset_token ILIKE '%#{session[:token]}%'").first
+   @user.first_name
    if user_params[:password] != '' && @user.update(user_params)
       session[:user_id] = @user.id
       session[:token]   = nil

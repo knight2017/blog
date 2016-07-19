@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body)
   end
   def create
-    @blog = Post.find params[:post_id]
+    @blog = Post.friendly.find params[:post_id]
     @comment = @blog.comments.new comment_params
     @comment.user = current_user
     respond_to do |format|

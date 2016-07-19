@@ -1,4 +1,16 @@
 source 'https://rubygems.org'
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
+gem 'active_model_serializers'
+gem 'jbuilder', '~> 2.0'
+gem 'kaminari'
+gem "mini_magick"
+gem 'carrierwave'
+gem 'simple_form'
+gem 'omniauth-twitter'
+gem 'will_paginate'
+gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
 gem "font-awesome-rails"
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
@@ -24,6 +36,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 1.10'
+gem 'friendly_id'
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 group :development, :test do

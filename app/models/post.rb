@@ -8,6 +8,10 @@ has_many :stars, dependent: :destroy
 has_many :staring_users, through: :stars, source: :user
 has_many :taggings, dependent: :destroy
 has_many :tags, through: :taggings
+extend FriendlyId
+friendly_id :title, use: [:slugged, :history]
+mount_uploader :image, AvatarUploader
+
 
 validates(:title, presence: true, uniqueness: true, length: {minimum: 2})
 validates :body, presence: true, length: {minimum: 2}

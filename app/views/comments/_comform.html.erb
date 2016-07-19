@@ -1,8 +1,6 @@
 <%= @comment.errors.full_messages.join(", ") %> <br>
 
-<%= form_for [@blog, @comment], remote: true do |f| %>
-   <h3>commnets</h3>
-   <%= f.text_area :body %>
-   <br>
-   <%= f.submit %>
+<%= simple_form_for [@blog, @comment], remote: true do |f| %>
+ <%= f.input :body, hint: "enter a comment..." %>
+ <%= f.submit({class: "btn btn-primary"}) %>
 <% end %>
