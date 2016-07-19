@@ -14,5 +14,11 @@
  *= require_self
 
  */
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "font-awesome";
+#search {
+  float: right;
+  display: inline-block;
+  margin: auto;
+  position: relative;
+  top: 13px;
+}

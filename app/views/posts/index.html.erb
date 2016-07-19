@@ -1,24 +1,33 @@
 <h1>ALL the Blogs</h1>
 
 <nav>
-<h3><a href="/posts/new">Create a new blog</a></h3> |
+<h3><a href="/posts/new">Create a new blog</a></h3>
 </nav>
+
 <br>
 <div class="grid">
 	<div class="grid-item grid-item-2">
-  <% @blogs.each do |blog| %>
-    <%= link_to blog.title, post_path(blog) %>|
-    <%= blog&.user.first_name %>|
-    <% if can? :manage, blog%>
-    <%= link_to "Edit", edit_post_path( blog) %>
-    <%= link_to "Delete", post_path(blog),
-                            method: :delete,
-                            data: {confirm: "Are you sure?"} %> <br>
-    <% end %>
-    <%= blog.body %>
-    <hr>
-  <% end %>
+	  <% @blogs.each do |blog| %>
+			<div class="blog col-sm-6 col-md-4 col-lg-3">
+
+		    <h4><%= link_to blog.title, post_path(blog) %></h4>
+		    <i class="author">by:<%= blog&.user.first_name %></i>
+		    <% if can? :manage, blog%>
+			    <%= link_to "Edit", edit_post_path( blog) %>
+			    <%= link_to "Delete", post_path(blog),
+			                            method: :delete,
+			                            data: {confirm: "Are you sure?"} %> <br>
+		    <% end %>
+			  <p><%= blog.body.truncate(140) %></p>
+		    <hr>
+			</div>
+	  <% end %>
   </div>
+</div>
+
+
+<div class="space">
+
 </div>
 <nav id="pagination">
   <% if session[:pgnum].to_i <= 0%>

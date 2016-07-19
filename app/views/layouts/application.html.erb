@@ -15,42 +15,44 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
-   <nav class="navbar navbar-light bg-orange navbar-fixed-top">
+   <nav class="navbar navbar-default navbar-fixed-top">
     <ul class="nav navbar-nav">
      <li><a class="item" href="/">HOME</a>      </li>
      <li><a class="item" href="/about">About</a></li>
      <li><a class="item" href="/posts">Blogs</a></li>
      <li><%= link_to "Sign in with Twitter", sign_in_with_twitter_path %></li>
-     <li>
-     <%= form_tag home_path do  %>
-     <%= text_field_tag :word, params[:word] %>
-     <%= submit_tag "Search" %>
-     <% end %>
-     </li>
     </ul>
-    <ul class="nav navbar-nav pull-right">
-
-       <% if session[:user_id] %>
-       <li><%= link_to "Fave Posts", favourites_path %></li>
+    <div class="">
+      <ul class="nav navbar-nav pull-right">
+        <li id="search">
+          <%= form_tag home_path do  %>
+          <%= text_field_tag :word, params[:word] %>
+          <%= submit_tag "Search" %>
+          <% end %>
+        </li>
+        <% if session[:user_id] %>
+        <li><%= link_to "Fave Posts", favourites_path %></li>
         <li><%= link_to "#{current_user.first_name}", user_path(current_user) %> </li>
-       <li><%= link_to "sign out", sessions_path, method: :delete %></li>
-       <% else %>
+        <li><%= link_to "sign out", sessions_path, method: :delete %></li>
+        <% else %>
         <li><a href="/users/new"> Sign Up</a></li>
-       <li><%= link_to "Sign In", new_session_path %></li>
-       <% end %>
-  </ul>
-
-    <% if flash[:notice] %>
-    <div class="flash-notice"><%= flash[:notice] %></div>
-    <% elsif flash[:alert] %>
-    <div class="flash-alert"><%= flash[:alert] %></div>
-    <% end %>
+        <li><%= link_to "Sign In", new_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
    </nav>
+   <% if flash[:notice] %>
+   <div class="flash-notice"><%= flash[:notice] %></div>
+   <% elsif flash[:alert] %>
+   <div class="flash-alert"><%= flash[:alert] %></div>
+   <% end %>
 
 <br>
 <br>
 <br>
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

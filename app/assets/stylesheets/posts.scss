@@ -1,3 +1,23 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.space {
+  min-height: 100px;
+  display: inline-block;
+  width: 100%;
+}
+
+#pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+i {
+    position: relative;
+    top: -7px;
+}
+.post_body {
+ min-height: 200px;
+ display: flex;
+ align-items: center;
+}

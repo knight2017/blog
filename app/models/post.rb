@@ -9,7 +9,7 @@ has_many :staring_users, through: :stars, source: :user
 has_many :taggings, dependent: :destroy
 has_many :tags, through: :taggings
 extend FriendlyId
-friendly_id :title, use: [:slugged, :history]
+friendly_id :title, use: [:slugged, :finders, :history]
 mount_uploader :image, AvatarUploader
 
 

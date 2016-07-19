@@ -11,7 +11,7 @@
      a = Post.count
      a % 10 == 0 ? @numofpg = a/10 : @numofpg = a/10 + 1
      respond_to do |format|
-       format.html { redner }
+       format.html { render }
        format.json { render json: @blogs }
      end
     end
